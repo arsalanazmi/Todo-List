@@ -16,7 +16,7 @@ async function createTodo(todos: string[]) {
         name: "continue",
         type: "confirm",
         message: `Are you sure you want to continue? `,
-        default: false,
+        default: true,
       },
     ]);
 
@@ -32,10 +32,18 @@ async function createTodo(todos: string[]) {
         type: "input",
         message: "Add an item to todo list: ",
       });
-      todos.push(addTodo.add);
 
-      console.log("Updated Todo List");
-      todos.forEach((todo) => console.log(todo));
+      if (addTodo.add !== "") {
+        todos.push(addTodo.add);
+        
+        console.log("Updated Todo List");
+        todos.forEach((todo) => console.log(todo));
+        console.log(todos);
+      } else {
+        console.log(
+          "Empty string can not be added in the todo list.\nPlease add something to your to do list."
+        );
+      }
     }
 
     // View Todo List
@@ -68,7 +76,7 @@ async function createTodo(todos: string[]) {
       todos = [...newTodo, addTodo.add];
 
       console.log(
-        `"${updateTodo.update}" successfully updated from todo list.`
+        `"${updateTodo.update}" successfully updated in the todo list.`
       );
       console.log("Updated Todo List");
       todos.forEach((todo) => console.log(todo));
